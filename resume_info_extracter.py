@@ -31,13 +31,16 @@ def extract_candidate_info(text):
     "Penetration Testing", "Kali Linux", "Metasploit", "Wireshark", "Burp Suite", "OWASP", "Cryptography",
 
     # Mobile Development
-    "Android", "iOS", "React Native", "Flutter", "Xamarin",
-
-    # Other Relevant Skills
-    "Machine Learning", "Deep Learning", "Artificial Intelligence", "Data Analysis", "Big Data", "Hadoop", "Spark",
-    "Agile", "Scrum", "Problem Solving", "Leadership"
+    "Android", "iOS", "React Native", "Flutter", "Xamarin"
     ]
     found_skills = [skill for skill in predefined_skills if skill.lower() in text.lower()] 
+
+    ats_keywords_list = [
+        "Agile", "Scrum", "Teamwork", "Leadership", "Problem Solving", "Critical Thinking", "Communication", "Collaboration", "Time Management",
+        "Machine Learning", "Artificial Intelligence", "Cloud Computing","Cybersecurity", "Data Analysis", "Big Data", "API Development",
+        "Software Development Lifecycle", "Project Management"
+    ]
+    ats_keywords = [ats for ats in ats_keywords_list if ats.lower() in text.lower()]
 
     exp_pattern = r"(\d+)\s*(?:\+?\s*)?(?:years?|yrs?)"
     experience = re.findall(exp_pattern, text)
@@ -47,7 +50,8 @@ def extract_candidate_info(text):
         "email": email,
         "phone": phone,
         "skills": found_skills,
-        "experience": experience
+        "experience": experience,
+        "ats_keywords": ats_keywords
     }
     return candidate
 
